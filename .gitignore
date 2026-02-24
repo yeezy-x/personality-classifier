@@ -1,0 +1,77 @@
+# ==============================
+# 🔹 Python Cache
+# ==============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ==============================
+# 🔹 Jupyter Notebook
+# ==============================
+.ipynb_checkpoints/
+
+# ==============================
+# 🔹 Virtual Environments
+# ==============================
+venv/
+env/
+.venv/
+conda-env/
+personality/
+
+# ==============================
+# 🔹 Dataset (DO NOT PUSH DATA)
+# ==============================
+data/raw/
+data/processed/
+data/csv/
+ZipCeleb/
+personality_images/
+
+# ==============================
+# 🔹 Model Files (Large)
+# ==============================
+models/cnn_models/
+models/ann_models/
+models/landmark_model/
+*.h5
+*.keras
+*.dat
+
+# ==============================
+# 🔹 Sample Images (Optional)
+# ==============================
+sample_images/
+*.jpg
+*.jpeg
+*.png
+*.JPG
+
+# ==============================
+# 🔹 Logs
+# ==============================
+*.log
+
+# ==============================
+# 🔹 OS Files
+# ==============================
+.DS_Store
+Thumbs.db
+
+# ==============================
+# 🔹 VS Code
+# ==============================
+.vscode/
+
+# ==============================
+# 🔹 WSL / System Files
+# ==============================
+*.swp
+*.swo
+
+# ==============================
+# 🔹 Temporary Files
+# ==============================
+temp/
+tmp/
