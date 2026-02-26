@@ -1,0 +1,59 @@
+"""
+trait_models.py
+
+Reusable CNN wrapper for trait prediction.
+Supports:
+- Probability output
+- Confidence
+- Binary or multi-class
+"""
+
+import cv2
+import numpy as np
+import tensorflow as tf
+
+
+class CNNModel:
+    def __init__(self, model_path, img_size=(250, 252), grayscale=True):
+        self.model = tf.keras.models.load_model(model_path)
+        self.img_size = img_size
+        self.grayscale = grayscale
+
+    def _prepare(self, image_path):
+        img = cv2.imread(image_path)
+
+        if img is None:
+            raise ValueError("Image not found")
+
+        img = cv2.resize(img, self.img_size)
+
+        if self.grayscale:
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            img = np.expand_dims(img, axis=-1)
+
+        img = img / 255.0
+        img = np.expand_dims(img, axis=0)
+
+        return img
+
+    def predict(self, image_path, class_labels):
+        """
+        Returns structured prediction:
+        {
+            "label": str,
+            "probability": float,
+            "confidence": float
+        }
+        """
+
+        img = self._prepare(image_path)
+        preds = self.model.predict(img, verbose=0)[0]
+
+        class_index = np.argmax(preds)
+        probability = float(preds[class_index])
+
+        return {
+            "label": class_labels[class_index],
+            "probability": probability,
+            "confidence": probability
+        }
