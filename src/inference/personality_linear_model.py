@@ -126,6 +126,14 @@ class ContinuousPersonalityModel:
         W = self.weight_matrix.values
 
         scores = np.dot(W, X)
+        scores = np.tanh(scores)  # nonlinearity to keep outputs in [-1, 1] 
+
+        # Range	Interpretation
+            # 0.7 to 1	Strong presence
+            # 0.3 to 0.7	Moderate presence
+           # -0.3 to 0.3	Neutral
+           # -0.7 to -0.3	Weak
+           # -1 to -0.7	Strongly negative
 
         result = dict(zip(self.personality_dims, scores))
 

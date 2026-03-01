@@ -37,6 +37,7 @@ class FeaturePipeline:
     def __init__(
         self,
         predictor_path: str,
+        lookup_path: str,
         double_chin_model_path: str,
         eye_threshold: float,
         nose_threshold: float,
